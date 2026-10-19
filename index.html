@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Deutsch Mit Hossam Hemaya</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&family=Bitter:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #eef2f6;
+  --card: #ffffff;
+  --ink: #14213d;
+  --mut: #5b6b82;
+  --gold: #f2b705;
+  --red: #d62839;
+  --green: #1f9d63;
+  --line: #d5dde8;
+  --der: #0077b6;
+  --die: #e63946;
+  --das: #2a9d8f;
+  box-sizing: border-box;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1626;
+    --card: #18243a;
+    --ink: #eef2f8;
+    --mut: #9aabc4;
+    --line: #2a3a56;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #0e1626;
+  --card: #18243a;
+  --ink: #eef2f8;
+  --mut: #9aabc4;
+  --line: #2a3a56;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Cairo', system-ui, sans-serif;
+  line-height: 1.6;
+}
+
+main {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+h1 { font-size: 20px; font-weight: 800; margin: 0; color: var(--ink); }
+.sub { color: var(--mut); margin: 2px 0 16px; font-size: 13px; }
+
+.notif-box {
+  background: var(--card);
+  border: 1px solid var(--gold);
+  border-radius: 14px;
+  padding: 10px 14px;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+}
+.notif-btn {
+  background: var(--gold);
+  border: 0;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-family: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.stats { display: flex; gap: 8px; margin-bottom: 16px; }
+.stat {
+  flex: 1;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 10px;
+  text-align: center;
+}
+.stat b { display: block; font-size: 18px; color: var(--ink); }
+.stat span { font-size: 11px; color: var(--mut); }
+
+.bar {
+  height: 8px;
+  background: var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+.bar i {
+  display: block;
+  height: 100%;
+  background: var(--gold);
+  width: 0%;
+  transition: width .3s ease;
+}
+
+.section-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--mut);
+  margin-bottom: 6px;
+}
+
+.levels {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+  scrollbar-width: none;
+}
+.levels::-webkit-scrollbar { display: none; }
+
+.levels button {
+  white-space: nowrap;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--ink);
+  border-radius: 10px;
+  padding: 6px 12px;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.levels button.on {
+  background: var(--gold);
+  color: #000;
+  border-color: var(--gold);
+  font-weight: 800;
+}
+
+.tabs { display: flex; gap: 4px; margin-bottom: 16px; border-bottom: 2px solid var(--line); }
+.tabs button {
+  flex: 1;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--mut);
+  padding: 10px 2px;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  margin-bottom: -2px;
+}
+.tabs button.on { color: var(--ink); border-color: var(--gold); }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  min-height: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+  cursor: pointer;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  transition: transform 0.2s;
+}
+.card:active { transform: scale(0.99); }
+
+.badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: var(--line);
+  color: var(--ink);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 8px;
+}
+
+.article-der { color: var(--der); }
+.article-die { color: var(--die); }
+.article-das { color: var(--das); }
+
+.de {
+  font-family: 'Bitter', serif;
+  font-size: 28px;
+  font-weight: 700;
+  direction: ltr;
+  margin-bottom: 6px;
+}
+.ar { font-size: 22px; font-weight: 800; margin-top: 8px; }
+
+.sentence-box {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--line);
+  width: 100%;
+}
+.de-sentence {
+  font-family: 'Bitter', serif;
+  font-size: 16px;
+  color: var(--ink);
+  direction: ltr;
+}
+.ar-sentence {
+  font-size: 14px;
+  color: var(--mut);
+  margin-top: 4px;
+}
+
+.hint { color: var(--mut); font-size: 13px; margin-top: 8px; }
+
+.grammar-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 14px;
+}
+.grammar-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--ink);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.grammar-desc { font-size: 13px; color: var(--mut); margin-bottom: 12px; }
+
+table.g-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 10px 0;
+  font-size: 12px;
+  direction: ltr;
+  text-align: center;
+}
+table.g-table th, table.g-table td {
+  border: 1px solid var(--line);
+  padding: 6px 2px;
+}
+table.g-table th { background: var(--line); color: var(--ink); font-weight: 700; }
+
+.ex-box {
+  background: var(--bg);
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 10px;
+  font-size: 13px;
+}
+
+.row { display: flex; gap: 8px; margin-top: 12px; }
+.btn {
+  flex: 1;
+  border: 0;
+  border-radius: 14px;
+  padding: 14px;
+  font: inherit;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  color: #fff;
+}
+.btn.g { background: var(--green); }
+.btn.r { background: var(--red); }
+.btn.k { background: var(--ink); color: var(--bg); }
+
+.spk {
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--ink);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.opts { display: grid; gap: 8px; margin-top: 12px; }
+.opt {
+  border: 2px solid var(--line);
+  background: var(--card);
+  color: var(--ink);
+  border-radius: 14px;
+  padding: 14px;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+}
+.opt.ok { border-color: var(--green); background: var(--green); color: #fff; }
+.opt.no { border-color: var(--red); background: var(--red); color: #fff; }
+
+.done { text-align: center; padding: 32px 8px; }
+.done b { font-size: 44px; display: block; margin-bottom: 8px; }
+
+.foot { text-align: center; color: var(--mut); font-size: 12px; margin-top: 24px; }
+</style>
+</head>
+<body>
+
+<main>
+  <header>
+    <h1>Deutsch Mit Hossam Hemaya 🇩🇪</h1>
+    <button class="spk" style="width:36px; height:36px; font-size:14px;" onclick="toggleTheme()">🌗</button>
+  </header>
+  <p class="sub">تعلم الألمانية: مفردات، جمل وقواعد إعرابية كاملة.</p>
+
+  <div class="notif-box" id="notifBox">
+    <span>🔔 فعّل التنبيهات اليومية لتذكيرك بموعد الدرس</span>
+    <button class="notif-btn" onclick="enableNotifications()">تفعيل</button>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><b id="sKnown">0</b><span>عنصر حفظته</span></div>
+    <div class="stat"><b id="sLevel">A1</b><span>المستوى الحالي</span></div>
+  </div>
+
+  <div class="bar"><i id="progressBar"></i></div>
+
+  <div class="section-title">المستوى التعليمي:</div>
+  <div class="levels" id="levelsContainer">
+    <button class="on" onclick="setLevel('A1', this)">A1</button>
+    <button onclick="setLevel('A2', this)">A2</button>
+    <button onclick="setLevel('B1', this)">B1</button>
+    <button onclick="setLevel('B2', this)">B2</button>
+    <button onclick="setLevel('C1', this)">C1</button>
+    <button onclick="setLevel('C2', this)">C2</button>
+  </div>
+
+  <div class="tabs">
+    <button class="on" id="tabCards" onclick="switchMode('cards')">البطاقات والجمل</button>
+    <button id="tabGrammar" onclick="switchMode('grammar')">شرح القواعد 📘</button>
+    <button id="tabQuiz" onclick="switchMode('quiz')">اختبار سريع 🎯</button>
+  </div>
+
+  <div id="appArea"></div>
+
+  <div class="foot">Deutsch Mit Hossam Hemaya © 2026</div>
+</main>
+
+<script>
+const vocabulary = [
+  { de: "Hallo", ar: "مرحباً", level: "A1", sentence: "Hallo, wie geht es dir?", sentenceAr: "مرحباً، كيف حالك؟" },
+  { de: "der Apfel", ar: "التفاح", level: "A1", article: "der", sentence: "Ich esse einen Apfel.", sentenceAr: "أنا آكل تفاحة." },
+  { de: "das Wasser", ar: "الماء", level: "A1", article: "das", sentence: "Trinkst du gern Wasser?", sentenceAr: "هل تحب شرب الماء؟" },
+  { de: "die Wohnung", ar: "الشقة", level: "A2", article: "die", sentence: "Ich suche eine neue Wohnung.", sentenceAr: "أنا أبحث عن شقة جديدة." },
+  { de: "einkaufen", ar: "يتسوق", level: "A2", sentence: "Am Samstag gehe ich einkaufen.", sentenceAr: "يوم السبت أذهب للتسوق." },
+  { de: "die Erfahrung", ar: "الخبرة", level: "B1", article: "die", sentence: "Ich habe viel Erfahrung im Beruf.", sentenceAr: "لدي خبرة كبيرة في العمل." },
+  { de: "die Voraussetzung", ar: "المتطلب الأساسي", level: "B2", article: "die", sentence: "Deutsch ist eine Voraussetzung.", sentenceAr: "اللغة الألمانية متطلب أساسي." },
+  { de: "gewährleisten", ar: "يضمن / يكفل", level: "C1", sentence: "Wir gewährleisten höchste Qualität.", sentenceAr: "نحن نضمن أعلى مستوى من الجودة." },
+  { de: "unabdingbar", ar: "لا غنى عنه", level: "C2", sentence: "Das ist für den Erfolg unabdingbar.", sentenceAr: "هذا أمر لا غنى عنه للنجاح." }
+];
+
+const grammarRules = [
+  {
+    title: "1. حالة الفاعل (Nominativ)",
+    desc: "تُستخدم عندما يكون الاسم هو الفاعل في الجملة.",
+    table: `
+      <tr><th>الجنس</th><th>الرمز</th><th>المعرفة</th><th>التنكير</th></tr>
+      <tr><td>المذكر</td><td>der</td><td>der Mann</td><td>ein Mann</td></tr>
+      <tr><td>المؤنث</td><td>die</td><td>die Frau</td><td>eine Frau</td></tr>
+      <tr><td>المحايد</td><td>das</td><td>das Kind</td><td>ein Kind</td></tr>
+      <tr><td>الجمع</td><td>die</td><td>die Kinder</td><td>--</td></tr>
+    `,
+    exampleDe: "Der Mann arbeitet hier.",
+    exampleAr: "الرجل يعمل هنا."
+  },
+  {
+    title: "2. حالة المفعول به (Akkusativ)",
+    desc: "يقع الفعل على الاسم. التغيير الوحيد للمذكر (der تتحول إلى den).",
+    table: `
+      <tr><th>الجنس</th><th>المعرفة</th><th>التنكير</th></tr>
+      <tr><td>المذكر</td><td><b>den</b></td><td><b>einen</b></td></tr>
+      <tr><td>المؤنث</td><td>die</td><td>eine</td></tr>
+      <tr><td>المحايد</td><td>das</td><td>ein</td></tr>
+      <tr><td>الجمع</td><td>die</td><td>--</td></tr>
+    `,
+    exampleDe: "Ich habe einen Hund.",
+    exampleAr: "لدي كلب."
+  },
+  {
+    title: "3. حالة المجرور (Dativ)",
+    desc: "تُستخدم مع أفعال وحروف جر معينة. تتغير الأدوات بالكامل.",
+    table: `
+      <tr><th>الجنس</th><th>المعرفة</th><th>التنكير</th></tr>
+      <tr><td>المذكر</td><td><b>dem</b></td><td><b>einem</b></td></tr>
+      <tr><td>المؤنث</td><td><b>der</b></td><td><b>einer</b></td></tr>
+      <tr><td>المحايد</td><td><b>dem</b></td><td><b>einem</b></td></tr>
+      <tr><td>الجمع</td><td><b>den (+n)</b></td><td>--</td></tr>
+    `,
+    exampleDe: "Ich helfe dem Mann.",
+    exampleAr: "أنا أساعد الرجل."
+  },
+  {
+    title: "4. حالة الملكية (Genitiv)",
+    desc: "تُستخدم لإثبات الملكية مع إضافة s أو es للمذكر والمحايد.",
+    table: `
+      <tr><th>الجنس</th><th>المعرفة</th><th>التنكير</th></tr>
+      <tr><td>المذكر</td><td><b>des (+s)</b></td><td><b>eines (+s)</b></td></tr>
+      <tr><td>المؤنث</td><td><b>der</b></td><td><b>einer</b></td></tr>
+      <tr><td>المحايد</td><td><b>des (+s)</b></td><td><b>eines (+s)</b></td></tr>
+      <tr><td>الجمع</td><td><b>der</b></td><td>--</td></tr>
+    `,
+    exampleDe: "Das Auto des Mannes ist neu.",
+    exampleAr: "سيارةُ الرجلِ جديدة."
+  }
+];
+
+let selectedLevel = "A1";
+let filteredList = vocabulary.filter(v => v.level === selectedLevel);
+let currentIndex = 0;
+let knownCount = parseInt(localStorage.getItem('de_known') || '0');
+let showAnswer = false;
+let currentMode = 'cards';
+
+document.getElementById('sKnown').innerText = knownCount;
+
+function updateProgress() {
+  const pct = Math.round(((currentIndex) / (filteredList.length || 1)) * 100);
+  document.getElementById('progressBar').style.width = pct + '%';
+}
+
+function speak(text) {
+  try {
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+      const msg = new SpeechSynthesisUtterance(text);
+      msg.lang = 'de-DE';
+      window.speechSynthesis.speak(msg);
+    }
+  } catch (e) {
+    console.log("Speech synthesis error", e);
+  }
+}
+
+function renderCard() {
+  updateProgress();
+  const area = document.getElementById('appArea');
+
+  if (filteredList.length === 0 || currentIndex >= filteredList.length) {
+    area.innerHTML = `
+      <div class="done">
+        <b>🎉</b>
+        <h2>أحسنت! أتممت هذا الجزء.</h2>
+        <button class="btn k" onclick="restart()">إعادة الكلمات</button>
+      </div>`;
+    return;
+  }
+
+  const item = filteredList[currentIndex];
+  let articleClass = '';
+  if (item.article === 'der') articleClass = 'article-der';
+  if (item.article === 'die') articleClass = 'article-die';
+  if (item.article === 'das') articleClass = 'article-das';
+
+  area.innerHTML = `
+    <div class="card" onclick="toggleAnswer()">
+      <span class="badge">${item.level}</span>
+      <div class="de ${articleClass}">${item.de}</div>
+      ${showAnswer ? `
+        <div class="ar">${item.ar}</div>
+        <div class="sentence-box">
+          <div class="de-sentence">${item.sentence || ''}</div>
+          <div class="ar-sentence">${item.sentenceAr || ''}</div>
+        </div>
+      ` : `<div class="hint">اضغط لإظهار الترجمة والجملة التوضيحية</div>`}
+      <button class="spk" onclick="event.stopPropagation(); speak('${item.de}. ${item.sentence || ''}')">🔊 نطق</button>
+    </div>
+    <div class="row">
+      <button class="btn r" onclick="nextCard(false)">لم أحفظها</button>
+      <button class="btn g" onclick="nextCard(true)">حفظتها 👍</button>
+    </div>`;
+}
+
+function renderGrammar() {
+  document.getElementById('progressBar').style.width = '100%';
+  const area = document.getElementById('appArea');
+  
+  let html = `<h2 style="font-size: 16px; margin-bottom: 12px;">الحالات الإعرابية الأربعة (Kasus)</h2>`;
+  
+  grammarRules.forEach(g => {
+    html += `
+      <div class="grammar-card">
+        <div class="grammar-title">
+          <span>${g.title}</span>
+          <button class="spk" style="width:32px; height:32px; margin:0;" onclick="speak('${g.exampleDe}')">🔊</button>
+        </div>
+        <div class="grammar-desc">${g.desc}</div>
+        <table class="g-table">${g.table}</table>
+        <div class="ex-box">
+          <b>مثال:</b> <span style="direction:ltr; font-family:Bitter;">${g.exampleDe}</span><br>
+          <span style="color:var(--mut);">${g.exampleAr}</span>
+        </div>
+      </div>`;
+  });
+
+  area.innerHTML = html;
+}
+
+function renderQuiz() {
+  updateProgress();
+  const area = document.getElementById('appArea');
+
+  if (filteredList.length === 0 || currentIndex >= filteredList.length) {
+    area.innerHTML = `
+      <div class="done">
+        <b>🏆</b>
+        <h2>انتهى الاختبار!</h2>
+        <button class="btn k" onclick="restart()">إعادة الاختبار</button>
+      </div>`;
+    return;
+  }
+
+  const currentItem = filteredList[currentIndex];
+  let options = [currentItem.ar];
+  let otherAnswers = vocabulary.filter(v => v.ar !== currentItem.ar).map(v => v.ar);
+  otherAnswers.sort(() => 0.5 - Math.random());
+  
+  options.push(...otherAnswers.slice(0, 3));
+  options.sort(() => 0.5 - Math.random());
+
+  area.innerHTML = `
+    <div class="card" style="min-height: 140px;">
+      <span class="badge">${currentItem.level}</span>
+      <div class="de">${currentItem.de}</div>
+      <button class="spk" onclick="speak('${currentItem.de}')">🔊</button>
+    </div>
+    <div class="opts">
+      ${options.map(opt => `<button class="opt" onclick="checkAnswer(this, '${opt}', '${currentItem.ar}')">${opt}</button>`).join('')}
+    </div>`;
+}
+
+function checkAnswer(btn, selected, correct) {
+  const allBtns = document.querySelectorAll('.opt');
+  allBtns.forEach(b => b.disabled = true);
+
+  if (selected === correct) {
+    btn.classList.add('ok');
+    knownCount++;
+    localStorage.setItem('de_known', knownCount);
+    document.getElementById('sKnown').innerText = knownCount;
+  } else {
+    btn.classList.add('no');
+  }
+
+  setTimeout(() => {
+    currentIndex++;
+    renderQuiz();
+  }, 1000);
+}
+
+function toggleAnswer() {
+  showAnswer = !showAnswer;
+  renderCard();
+}
+
+function nextCard(isKnown) {
+  if (isKnown) {
+    knownCount++;
+    localStorage.setItem('de_known', knownCount);
+    document.getElementById('sKnown').innerText = knownCount;
+  }
+  showAnswer = false;
+  currentIndex++;
+  renderCard();
+}
+
+function switchMode(mode) {
+  currentMode = mode;
+  currentIndex = 0;
+  showAnswer = false;
+  
+  document.getElementById('tabCards').classList.toggle('on', mode === 'cards');
+  document.getElementById('tabGrammar').classList.toggle('on', mode === 'grammar');
+  document.getElementById('tabQuiz').classList.toggle('on', mode === 'quiz');
+
+  if (mode === 'cards') renderCard();
+  else if (mode === 'grammar') renderGrammar();
+  else renderQuiz();
+}
+
+function setLevel(lvl, btn) {
+  document.querySelectorAll('.levels button').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+
+  selectedLevel = lvl;
+  document.getElementById('sLevel').innerText = lvl;
+  filteredList = vocabulary.filter(v => v.level === lvl);
+
+  restart();
+}
+
+function restart() {
+  currentIndex = 0;
+  showAnswer = false;
+  if (currentMode === 'cards') renderCard();
+  else if (currentMode === 'grammar') renderGrammar();
+  else renderQuiz();
+}
+
+function toggleTheme() {
+  const current = document.documentElement.getAttribute('data-theme');
+  const target = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', target);
+}
+
+function enableNotifications() {
+  if ("Notification" in window) {
+    Notification.requestPermission().then(permission => {
+      if (permission === "granted") {
+        alert("تم تفعيل التنبيهات بنجاح 🇩🇪");
+        document.getElementById('notifBox').style.display = 'none';
+      }
+    });
+  } else {
+    alert("التنبيهات غير مدعومة في متصفحك الحالي.");
+  }
+}
+
+// تشغيل التطبيق تلقائياً
+renderCard();
+</script>
+</body>
+</html>
